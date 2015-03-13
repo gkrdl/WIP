@@ -1,0 +1,113 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Release</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <OutputType>Exe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>hAram</RootNamespace>
+    <AssemblyName>hAram</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <PreBuildEvent />
+    <PostBuildEvent />
+    <OutputPath>bin\Release</OutputPath>
+    <ProjectGuid>{CE7A402F-BFAA-47A2-8C29-B203914D2858}</ProjectGuid>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Release</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="clipper_library">
+      <HintPath>..\..\..\..\..\..\LeagueSharp\System\clipper_library.dll</HintPath>
+    </Reference>
+    <Reference Include="LeagueSharp">
+      <HintPath>..\..\..\..\..\..\LeagueSharp\System\LeagueSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="LeagueSharp.Common">
+      <HintPath>..\..\..\..\..\..\LeagueSharp\System\LeagueSharp.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="SharpDX">
+      <HintPath>..\..\..\..\..\..\LeagueSharp\System\SharpDX.dll</HintPath>
+    </Reference>
+    <Reference Include="SharpDX.Direct3D9">
+      <HintPath>..\..\..\..\..\..\LeagueSharp\System\SharpDX.Direct3D9.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Base.cs" />
+    <Compile Include="Champions\nunu.cs" />
+    <Compile Include="Champions\nami.cs" />
+    <Compile Include="Champions\morgana.cs" />
+    <Compile Include="Champions\malzahar.cs" />
+    <Compile Include="Champions\leblanc.cs" />
+    <Compile Include="Champions\karthus.cs" />
+    <Compile Include="Champions\irelia.cs" />
+    <Compile Include="Champions\heimerdinger.cs" />
+    <Compile Include="Champions\graves.cs" />
+    <Compile Include="Champions\gragas.cs" />
+    <Compile Include="Champions\garen.cs" />
+    <Compile Include="Champions\gangplank.cs" />
+    <Compile Include="Champions\galio.cs" />
+    <Compile Include="Champions\fizz.cs" />
+    <Compile Include="Champions\fiora.cs" />
+    <Compile Include="Champions\fiddlesticks.cs" />
+    <Compile Include="Champions\ezreal.cs" />
+    <Compile Include="Champions\evelynn.cs" />
+    <Compile Include="Champions\draven.cs" />
+    <Compile Include="Champions\diana.cs" />
+    <Compile Include="Champions\darius.cs" />
+    <Compile Include="Champions\corki.cs" />
+    <Compile Include="Champions\chogath.cs" />
+    <Compile Include="Champions\cassiopeia.cs" />
+    <Compile Include="Champions\caitlyn.cs" />
+    <Compile Include="Champions\braum.cs" />
+    <Compile Include="Champions\brand.cs" />
+    <Compile Include="Champions\blitzcrank.cs" />
+    <Compile Include="Champions\ashe.cs" />
+    <Compile Include="Champions\annie.cs" />
+    <Compile Include="Champions\anivia.cs" />
+    <Compile Include="Champions\amumu.cs" />
+    <Compile Include="Champions\alistar.cs" />
+    <Compile Include="Champions\akali.cs" />
+    <Compile Include="Champions\ahri.cs" />
+    <Compile Include="Champions\aatrox.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
