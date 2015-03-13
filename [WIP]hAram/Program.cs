@@ -32,7 +32,7 @@ namespace hAram
         private static void Game_OnGameLoad(EventArgs args)
         {
             InitMenu();
-            var type = Type.GetType("hAram.Champions." + Player.ChampionName);
+            var type = Type.GetType("hAram.Champions." + Player.ChampionName.ToLowerInvariant());
             Game.PrintChat(type.ToString());
             Activator.CreateInstance(type);
            
