@@ -19,7 +19,7 @@ namespace hAram.Champions
         {
             base.Game_OnUpdate(args);
 
-            var lowHealthHero = getHero.LessHealthHero(E.Range);
+            var lowHealthHero = GetObject.LessHealthHero(E.Range);
 
             if (lowHealthHero.HealthPercentage() <= 60)
                 CastSpell(E, eData);

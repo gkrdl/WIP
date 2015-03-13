@@ -37,12 +37,9 @@ namespace hAram.Champions
             {
                 if (Player.Distance(gapcloser.End) <= 200)
                 {
-                    var lessDistanceHero = 
-                        ObjectHandler.Get<Obj_AI_Hero>().Allies
-                        .Where(h => Player.Distance(h) <= E.Range)
-                        .OrderByDescending(hero => Player.Distance(hero)).ToList()[0];
+                    var moreDistanceHero = GetObject.MoreDistanceHero(E.Range);
 
-                    E.CastOnUnit(lessDistanceHero);
+                    E.CastOnUnit(moreDistanceHero);
                 }
             }
             

@@ -23,7 +23,7 @@ namespace hAram.Champions
 
             if (W.Instance.ToggleState == 1 && Player.CountEnemiesInRange(W.Range) > 0 )
                 CastSpell(W, wData);
-            else if (W.Instance.ToggleState == 2 && Player.CountEnemiesInRange(W.Range) == 0)
+            else if (W.Instance.ToggleState != 1 && Player.CountEnemiesInRange(W.Range) == 0)
                 CastSpell(W, wData);
 
             CastSpell(E, eData);

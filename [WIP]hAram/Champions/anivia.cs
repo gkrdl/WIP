@@ -23,7 +23,7 @@ namespace hAram.Champions
 
             if (R.CastIfWillHit(target, 1) && R.Instance.ToggleState == 1)
                 CastSpell(R, rData);
-            else if (R.CastIfWillHit(target, 0) && R.Instance.ToggleState == 2)
+            else if (R.CastIfWillHit(target, 0) && R.Instance.ToggleState != 1)
                 CastSpell(R, rData);
 
             CastSpell(W, wData);

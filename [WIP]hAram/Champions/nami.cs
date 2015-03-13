@@ -1,4 +1,4 @@
-﻿using hAram.Utils;
+﻿using hAram.Util;
 using LeagueSharp;
 using LeagueSharp.Common;
 using System;
@@ -20,19 +20,23 @@ namespace hAram.Champions
         {
             base.Game_OnUpdate(args);
 
-            var lowHealthHero = getHero.LessHealthHero(W.Range);
-
+            var lowHealthHero = GetObject.LessHealthHero(W.Range);
+            var moreRangeHero = GetObject.MoreRangeHero(E.Range);
             if (lowHealthHero != null)
             {
                 if (lowHealthHero.HealthPercentage() <= 70)
-                {
                     W.CastOnUnit(lowHealthHero);
-                }
+            }
+            if (moreRangeHero != null)
+            {
+                if (moreRangeHero.HealthPercentage() >= 50)
+                    E.CastOnUnit(moreRangeHero);
             }
             
             CastSpell(Q, qData);
             CastSpell(W, wData);
-            CastSpell(E, eData);
+            
+
 
             target = GetTarget(R);
             if (R.IsKillable(target) || R.CastIfWillHit(target, 2))

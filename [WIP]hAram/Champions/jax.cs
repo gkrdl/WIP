@@ -24,7 +24,7 @@ namespace hAram.Champions
             CastSpell(E, eData);
             CastSpell(W, wData);
 
-            if (E.Instance.ToggleState == 2)
+            if (E.Instance.ToggleState != 1)
                 E.Cast();
 
             target = GetTarget(R);

@@ -21,7 +21,7 @@ namespace hAram.Champions
 
             CastSpell(Q, qData);
 
-            if (Q.Instance.ToggleState == 2)
+            if (Q.Instance.ToggleState != 1)
                 Q.Cast();
 
             CastSpell(W, wData);

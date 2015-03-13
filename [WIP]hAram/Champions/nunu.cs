@@ -19,9 +19,7 @@ namespace hAram.Champions
         {
             base.Game_OnUpdate(args);
 
-            var moreRangeHero = ObjectHandler.Get<Obj_AI_Hero>().Allies
-                                            .Where(hero => Player.Distance(hero) <= W.Range)
-                                            .OrderByDescending(h => Orbwalking.GetRealAutoAttackRange(h)).ToList()[0];
+            var moreRangeHero = GetObject.MoreRangeHero(W.Range);
 
             if (moreRangeHero != null)
                 W.CastOnUnit(moreRangeHero);

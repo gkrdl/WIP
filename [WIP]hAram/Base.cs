@@ -1,4 +1,4 @@
-﻿using hAram.Utils;
+﻿using hAram.Util;
 using LeagueSharp;
 using LeagueSharp.Common;
 using SharpDX;
@@ -24,7 +24,7 @@ namespace hAram
         public Obj_AI_Hero Player = ObjectHandler.Player;
         public Obj_AI_Hero target = null;
         public Obj_AI_Hero followTarget = null;
-        public GetHero getHero { get; set; }
+        public GetObject GetObject { get; set; }
 
         public string[] Assasin = { "akali", "darius", "diana", "evelynn", "fizz", "katarina", "nidalee" };
         public string[] ADTank = { "drmnudo", "garen", "gnar", "hecarim", "irelia", "jarvan iv", "jax", "leesin", "olaf", "renekton", "rengar", "shyvana", "sion", "skarner", "thresh", "trundle", "udyr", "volibear", "warwick", "wukong", "xinzhao", "yorick" };
@@ -64,6 +64,7 @@ namespace hAram
             InitPlayer();
             Game.OnUpdate += Game_OnUpdate;
             Obj_AI_Hero.OnProcessSpellCast += Obj_AI_Hero_OnProcessSpellCast;
+            Obj_AI_Base.OnIssueOrder += Obj_AI_Base_OnIssueOrder;
             AntiGapcloser.OnEnemyGapcloser += AntiGapcloser_OnEnemyGapcloser;
         }
 
@@ -171,6 +172,7 @@ namespace hAram
 
         public virtual void AntiGapcloser_OnEnemyGapcloser(ActiveGapcloser gapcloser) { }
 
+        public virtual void Obj_AI_Base_OnIssueOrder(Obj_AI_Base sender, GameObjectIssueOrderEventArgs args) { }
 
         #region 사용자함수
 

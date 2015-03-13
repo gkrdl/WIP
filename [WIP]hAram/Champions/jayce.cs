@@ -30,7 +30,7 @@ namespace hAram.Champions
             CastSpell(Q, qData);
             CastSpell(W, wData);
 
-            if (Q.Instance.Name.Equals("jayceshockblast"))
+            if (Player.Spellbook.GetSpell(SpellSlot.Q).Name.Equals("jayceshockblast"))
             {
                 CastSpell(Q, qData);
                 CastSpell(W, wData);

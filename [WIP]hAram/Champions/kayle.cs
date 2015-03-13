@@ -26,7 +26,7 @@ namespace hAram.Champions
             
             CastSpell(Q, qData);
 
-            var lessHealthHero = getHero.LessHealthHero(W.Range);
+            var lessHealthHero = GetObject.LessHealthHero(W.Range);
             
             if (lessHealthHero.HealthPercentage() <= 15)
                 R.CastOnUnit(lessHealthHero);

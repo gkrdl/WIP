@@ -17,7 +17,7 @@ namespace hAram.Champions
 
 
 
-            List<Obj_AI_Hero> lstAlies = getHero.GetAlliesList().OrderBy(r => r.AttackRange).ToList();
+            List<Obj_AI_Hero> lstAlies = GetObject.GetAlliesList().OrderBy(r => r.AttackRange).ToList();
 
             if (!lstAlies[0].IsMe)
                 contractTarget = lstAlies[0];

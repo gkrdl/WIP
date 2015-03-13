@@ -25,7 +25,7 @@ namespace hAram.Champions
             target = GetTarget(W);
             if (target != null && W.Instance.ToggleState == 1)
                 CastSpell(W, wData);
-            else if (target == null && W.Instance.ToggleState == 2)
+            else if (target == null && W.Instance.ToggleState != 1)
                 CastSpell(W, wData);
 
             if (Player.HealthPercentage() <= 30)
