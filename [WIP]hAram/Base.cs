@@ -225,7 +225,7 @@ namespace hAram
 
         public  void SetOrbWalk(AttackableUnit attackTarget)
         {
-            if (target is Obj_AI_Hero)
+            if (attackTarget is Obj_AI_Hero)
             {
                 status = "Fight";
 
@@ -234,17 +234,17 @@ namespace hAram
                 {
                     distance1 = (Orbwalking.GetRealAutoAttackRange(Player) - Player.Distance(attackTarget) - Player.Distance(attackTarget) / 2) / 2;
                     if (Player.Team == GameObjectTeam.Chaos)
-                        Orbwalking.Orbwalk(target, new Vector3(Player.Position.X + distance1, Player.Position.Y + distance1, Player.Position.Z));
+                        Orbwalking.Orbwalk(attackTarget, new Vector3(Player.Position.X + distance1, Player.Position.Y + distance1, Player.Position.Z));
                     else
-                        Orbwalking.Orbwalk(target, new Vector3(Player.Position.X - distance1, Player.Position.Y - distance1, Player.Position.Z));
+                        Orbwalking.Orbwalk(attackTarget, new Vector3(Player.Position.X - distance1, Player.Position.Y - distance1, Player.Position.Z));
                 }
                 else if (Player.Distance(attackTarget) >= Orbwalking.GetRealAutoAttackRange(Player))
                 {
                     distance1 = (Orbwalking.GetRealAutoAttackRange(Player) - Player.Distance(attackTarget) - Player.Distance(attackTarget) / 2) / 2;
                     if (Player.Team == GameObjectTeam.Chaos)
-                        Orbwalking.Orbwalk(target, new Vector3(Player.Position.X - distance1, Player.Position.Y - distance1, Player.Position.Z));
+                        Orbwalking.Orbwalk(attackTarget, new Vector3(Player.Position.X - distance1, Player.Position.Y - distance1, Player.Position.Z));
                     else
-                        Orbwalking.Orbwalk(target, new Vector3(Player.Position.X + distance1, Player.Position.Y + distance1, Player.Position.Z));
+                        Orbwalking.Orbwalk(attackTarget, new Vector3(Player.Position.X + distance1, Player.Position.Y + distance1, Player.Position.Z));
                 }
             }
         }
