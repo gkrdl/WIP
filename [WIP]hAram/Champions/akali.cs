@@ -21,7 +21,7 @@ namespace hAram.Champions
 
             CastSpell(Q, qData);
 
-            if (Killable() || (status == "Fight" &&Player.HealthPercentage() <= 30))
+            if (Killable(true, true, true, true) || (status == "Fight" && Player.HealthPercentage() <= 30))
                 CastSpell(R, rData);
             
             CastSpell(E, eData);

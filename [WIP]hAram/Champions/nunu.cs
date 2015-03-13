@@ -20,8 +20,8 @@ namespace hAram.Champions
             base.Game_OnUpdate(args);
 
             var moreRangeHero = ObjectHandler.Get<Obj_AI_Hero>().Allies
-.FindAll(hero => Player.Distance(hero) <= W.Range)
-.OrderBy(h => Orbwalking.GetRealAutoAttackRange(h)).ToList()[0];
+                                            .Where(hero => Player.Distance(hero) <= W.Range)
+                                            .OrderByDescending(h => Orbwalking.GetRealAutoAttackRange(h)).ToList()[0];
 
             if (moreRangeHero != null)
                 W.CastOnUnit(moreRangeHero);
@@ -31,7 +31,7 @@ namespace hAram.Champions
             CastSpell(E, eData);
 
             var minion = MinionManager.GetMinions(Player.Position, Q.Range)
-                                    .OrderBy(m => Player.Distance(m)).ToList()[0];
+                                    .OrderBy(m  => Player.Distance(m)).ToList()[0];
 
             if (minion != null && Player.HealthPercentage() <= 80)
                 Q.CastOnUnit(minion);
@@ -39,16 +39,6 @@ namespace hAram.Champions
             target = GetTarget(R);
             if (R.IsKillable(target) || R.CastIfWillHit(target, 3) || (status == "Fight" && Player.HealthPercentage() <= 30))
                 CastSpell(R, rData);
-        }
-
-        public override void AntiGapcloser_OnEnemyGapcloser(ActiveGapcloser gapcloser)
-        {
-            if (gapcloser.Sender.IsEnemy)
-            {
-                if (Player.Distance(gapcloser.End) <= 200)
-                    AntiGapClose(E);
-            }
-            
         }
     }
 }

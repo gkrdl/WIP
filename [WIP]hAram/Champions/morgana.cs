@@ -21,7 +21,6 @@ namespace hAram.Champions
 
             CastSpell(Q, qData);
             CastSpell(W, wData);
-            CastSpell(E, eData);
             
             target = GetTarget(R);
             if (R.IsKillable(target) 

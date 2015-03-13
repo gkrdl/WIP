@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 
 namespace hAram.Champions
 {
-    class alistar : Base
+    class khazix : Base
     {
-        public alistar()
+        public khazix()
         {
             Game.PrintChat("hAram : " + Player.ChampionName + "Loaded.");
         }
@@ -19,16 +19,25 @@ namespace hAram.Champions
         {
             base.Game_OnUpdate(args);
 
-            var lowHealthHero = getHero.LessHealthHero(E.Range);
-
-            if (lowHealthHero.HealthPercentage() <= 60)
-                CastSpell(E, eData);
-
-            CastSpell(W, wData);
             CastSpell(Q, qData);
+            CastSpell(W, wData);
 
+            if (Killable(true, true, true, false))
+                CastSpell(E, eData);
+            
+
+            target = GetTarget(R);
             if (status == "Fight" && Player.HealthPercentage() <= 50)
                 CastSpell(R, rData);
+        }
+
+        public override void AntiGapcloser_OnEnemyGapcloser(ActiveGapcloser gapcloser)
+        {
+            if (gapcloser.Sender.IsEnemy)
+            {
+                if (Player.Distance(gapcloser.End) <= 200)
+                    AntiGapClose(E);
+            }
         }
     }
 }

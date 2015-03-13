@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 
 namespace hAram.Champions
 {
-    class blitzcrank : Base
+    class kennen : Base
     {
-        public blitzcrank()
+        public kennen()
         {
             Game.PrintChat("hAram : " + Player.ChampionName + "Loaded.");
         }
@@ -19,11 +19,13 @@ namespace hAram.Champions
         {
             base.Game_OnUpdate(args);
 
-            CastSpell(W, wData);
             CastSpell(Q, qData);
-            CastSpell(E, eData);
+            CastSpell(W, wData);
+            
+            
 
-            if (Killable(true, true, true, true) || R.CastIfWillHit(target, 2) || (status == "Fight" && Player.HealthPercentage() <= 30))
+            target = GetTarget(R);
+            if (R.IsKillable(target) || R.CastIfWillHit(target, 3) || (status == "Fight" && Player.HealthPercentage() <= 30))
                 CastSpell(R, rData);
         }
 
@@ -32,11 +34,9 @@ namespace hAram.Champions
             if (gapcloser.Sender.IsEnemy)
             {
                 if (Player.Distance(gapcloser.End) <= 200)
-                {
-                    CastSpell(R, rData);
-                    CastSpell(W, wData);
-                }
+                    E.Cast();
             }
+            
         }
     }
 }

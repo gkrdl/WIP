@@ -24,7 +24,7 @@ namespace hAram.Champions
             CastSpell(E, eData);
 
 
-            if (Killable() && (TargetSelector.GetTarget(Orbwalking.GetRealAutoAttackRange(Player), TargetSelector.DamageType.Physical) == null))
+            if (Killable(false, false, false, true) && (TargetSelector.GetTarget(Orbwalking.GetRealAutoAttackRange(Player), TargetSelector.DamageType.Physical) == null))
                 CastSpell(R, rData);
             else if (Player.IsDead)
                 CastSpell(R, rData);

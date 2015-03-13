@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 
 namespace hAram.Champions
 {
-    class blitzcrank : Base
+    class katarina : Base
     {
-        public blitzcrank()
+        public katarina()
         {
             Game.PrintChat("hAram : " + Player.ChampionName + "Loaded.");
         }
@@ -19,12 +19,16 @@ namespace hAram.Champions
         {
             base.Game_OnUpdate(args);
 
-            CastSpell(W, wData);
+            if (Killable(true, true, true, false))
+                CastSpell(E, eData);
+            
             CastSpell(Q, qData);
-            CastSpell(E, eData);
+            CastSpell(W, wData);
 
-            if (Killable(true, true, true, true) || R.CastIfWillHit(target, 2) || (status == "Fight" && Player.HealthPercentage() <= 30))
-                CastSpell(R, rData);
+            //Killable()
+            target = GetTarget(R);
+            if (R.IsKillable(target))
+                ;
         }
 
         public override void AntiGapcloser_OnEnemyGapcloser(ActiveGapcloser gapcloser)
@@ -33,10 +37,15 @@ namespace hAram.Champions
             {
                 if (Player.Distance(gapcloser.End) <= 200)
                 {
-                    CastSpell(R, rData);
-                    CastSpell(W, wData);
+                    var lessDistanceHero = 
+                        ObjectHandler.Get<Obj_AI_Hero>().Allies
+                        .Where(h => Player.Distance(h) <= E.Range)
+                        .OrderByDescending(hero => Player.Distance(hero)).ToList()[0];
+
+                    E.CastOnUnit(lessDistanceHero);
                 }
             }
+            
         }
     }
 }

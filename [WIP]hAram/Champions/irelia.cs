@@ -20,14 +20,14 @@ namespace hAram.Champions
             base.Game_OnUpdate(args);
 
 
-            if (Killable() || rangeAllyCnt >= rangeEnemyCnt)
+            if (Killable(true, true, true, true) || rangeAllyCnt >= rangeEnemyCnt)
                 CastSpell(Q, qData);
             CastSpell(W, wData);
             CastSpell(E, eData);
             
 
             target = GetTarget(R);
-            if (Killable() || R.CastIfWillHit(target, 2))
+            if (Killable(true, true, true, true) || R.CastIfWillHit(target, 2))
                 CastSpell(R, rData);
         }
     }

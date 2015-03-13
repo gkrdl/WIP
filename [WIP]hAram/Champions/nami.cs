@@ -1,4 +1,5 @@
-﻿using LeagueSharp;
+﻿using hAram.Utils;
+using LeagueSharp;
 using LeagueSharp.Common;
 using System;
 using System.Collections.Generic;
@@ -19,9 +20,7 @@ namespace hAram.Champions
         {
             base.Game_OnUpdate(args);
 
-            var lowHealthHero = ObjectHandler.Get<Obj_AI_Hero>().Allies
-                        .FindAll(hero => Player.Distance(hero) <= W.Range)
-                        .OrderBy(h => h.HealthPercentage()).ToList()[0];
+            var lowHealthHero = getHero.LessHealthHero(W.Range);
 
             if (lowHealthHero != null)
             {

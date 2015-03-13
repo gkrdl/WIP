@@ -18,7 +18,7 @@ namespace hAram.Champions
         {
             base.Game_OnUpdate(args);
 
-            if (rangeAllyCnt + 1 >= rangeEnemyCnt || Killable())
+            if (rangeAllyCnt + 1 >= rangeEnemyCnt || Killable(true, true, true, true))
                 CastSpell(Q, qData);
 
             CastSpell(W, wData);

@@ -1,4 +1,5 @@
-﻿using LeagueSharp;
+﻿using hAram.Utils;
+using LeagueSharp;
 using LeagueSharp.Common;
 using SharpDX;
 using System;
@@ -12,43 +13,46 @@ namespace hAram
     class Base
     {
         #region 멤버, 변수
-        public  Menu config;
-        public  Orbwalking.Orbwalker orb;
-        public  Spell Q;
-        public  Spell W;
-        public  Spell E;
-        public  Spell R;
+        public Menu config;
+        public Orbwalking.Orbwalker orb;
+        public Spell Q;
+        public Spell W;
+        public Spell E;
+        public Spell R;
 
-        //public  Vector3[] buffs = { new Vector3(8922, 10, 7868), new Vector3(7473, 10, 6617), new Vector3(5929, 10, 5190), new Vector3(4751, 10, 3901)};
-        public  Obj_AI_Hero Player = ObjectHandler.Player;
-        public  Obj_AI_Hero target = null;
-        public  Obj_AI_Hero followTarget = null;
-        public  string[] Assasin = { "akali", "darius", "diana", "evelynn", "fizz", "katarina", "nidalee" };
-        public  string[] ADTank = { "drmnudo", "garen", "gnar", "hecarim", "irelia", "jarvan iv", "jax", "leesin", "olaf", "renekton", "rengar", "shyvana", "sion", "skarner", "thresh", "trundle", "udyr", "volibear", "warwick", "wukong", "xinzhao", "yorick" };
-        public  string[] ADCarry = { "ashe", "caitlyn", "corki", "draven", "ezreal", "gankplank", "graves", "jinx", "kalista", "kogmaw", "lucian", "masteryi", "missfortune", "quinn", "sivir", "tristana", "tryndamere", "twitch", "urgot", "varus", "vayne" };
-        public  string[] APTank = { "alistar", "amumu", "blitzcrank", "braum", "chogath", "leona", "malphite", "maokai", "nasus", "nautilus", "rammus", "sejuani", "shen", "singed", "zac" };
-        public  string[] APCarry = { "ahri", "anivia", "annie", "azir", "brand", "cassiopeia", "fiddlesticks", "galio", "gragas", "heimerdinger", "janna", "karma", "karthus", "leblanc", "lissandra", "lulu", "lux", "malzahar", "morgana", "nami", "nunu", "orianna", "ryze", "sona", "soraka", "swain", "syndra", "taric", "twistedfate", "veigar", "velkoz", "viktor", "xerath", "ziggs", "zilean", "zyra" };
-        public  string[] APHybrid = { "kayle", "teemo" };
-        public  string[] Bruiser = { "khazix", "pantheon", "riven", "talon", "vi", "yasuo", "zed" };
-        public  string[] ADCaster = { "aatrox", "fiora", "jayce", "nocturne", "poppy" };
-        public  string[] APOther = { "elise", "kennen", "mordekaiser", "rumble", "vladimir" };
-        public  int[] Shoplist;
-        public  List<int> lstHasItem = new List<int>();
-        public  int lastShopID = -1;
-        public  int heroType = 0;
-        public  long lastFollow = 0;
-        public  long followDelay = 6000000;
-        public  Vector3 lastFollowTargetPos = new Vector3();
-        public  long lastFollowTarget = 0;
-        public  long nextFollowTargetDelay = 300000000;
-        public  string status = "Follow";
-        public  List<Obj_AI_Turret> lstTurrets = new List<Obj_AI_Turret>();
-        public  Obj_AI_Turret turret = null;
+        //publi  Vector3[] buffs = { new Vector3(8922, 10, 7868), new Vector3(7473, 10, 6617), new Vector3(5929, 10, 5190), new Vector3(4751, 10, 3901)};
+        public Obj_AI_Hero Player = ObjectHandler.Player;
+        public Obj_AI_Hero target = null;
+        public Obj_AI_Hero followTarget = null;
+        public GetHero getHero { get; set; }
 
-        public  SpellDataInst qData = ObjectHandler.Player.Spellbook.GetSpell(SpellSlot.Q);
-        public  SpellDataInst wData = ObjectHandler.Player.Spellbook.GetSpell(SpellSlot.W);
-        public  SpellDataInst eData = ObjectHandler.Player.Spellbook.GetSpell(SpellSlot.E);
-        public  SpellDataInst rData = ObjectHandler.Player.Spellbook.GetSpell(SpellSlot.R);
+        public string[] Assasin = { "akali", "darius", "diana", "evelynn", "fizz", "katarina", "nidalee" };
+        public string[] ADTank = { "drmnudo", "garen", "gnar", "hecarim", "irelia", "jarvan iv", "jax", "leesin", "olaf", "renekton", "rengar", "shyvana", "sion", "skarner", "thresh", "trundle", "udyr", "volibear", "warwick", "wukong", "xinzhao", "yorick" };
+        public string[] ADCarry = { "ashe", "caitlyn", "corki", "draven", "ezreal", "gankplank", "graves", "jinx", "kalista", "kogmaw", "lucian", "masteryi", "missfortune", "quinn", "sivir", "tristana", "tryndamere", "twitch", "urgot", "varus", "vayne" };
+        public string[] APTank = { "alistar", "amumu", "blitzcrank", "braum", "chogath", "leona", "malphite", "maokai", "nasus", "nautilus", "rammus", "sejuani", "shen", "singed", "zac" };
+        public string[] APCarry = { "ahri", "anivia", "annie", "azir", "brand", "cassiopeia", "fiddlesticks", "galio", "gragas", "heimerdinger", "janna", "karma", "karthus", "leblanc", "lissandra", "lulu", "lux", "malzahar", "morgana", "nami", "nunu", "orianna", "ryze", "sona", "soraka", "swain", "syndra", "taric", "twistedfate", "veigar", "velkoz", "viktor", "xerath", "ziggs", "zilean", "zyra" };
+        public string[] APHybrid = { "kayle", "teemo" };
+        public string[] Bruiser = { "khazix", "pantheon", "riven", "talon", "vi", "yasuo", "zed" };
+        public string[] ADCaster = { "aatrox", "fiora", "jayce", "nocturne", "poppy" };
+        public string[] APOther = { "elise", "kennen", "mordekaiser", "rumble", "vladimir" };
+
+        public int[] Shoplist;
+        public List<int> lstHasItem = new List<int>();
+        public int lastShopID = -1;
+        public int heroType = 0;
+        public long lastFollow = 0;
+        public long followDelay = 6000000;
+        public Vector3 lastFollowTargetPos = new Vector3();
+        public long lastFollowTarget = 0;
+        public long nextFollowTargetDelay = 300000000;
+        public string status = "Follow";
+        public List<Obj_AI_Turret> lstTurrets = new List<Obj_AI_Turret>();
+        public Obj_AI_Turret turret = null;
+
+        public SpellDataInst qData = ObjectHandler.Player.Spellbook.GetSpell(SpellSlot.Q);
+        public SpellDataInst wData = ObjectHandler.Player.Spellbook.GetSpell(SpellSlot.W);
+        public SpellDataInst eData = ObjectHandler.Player.Spellbook.GetSpell(SpellSlot.E);
+        public SpellDataInst rData = ObjectHandler.Player.Spellbook.GetSpell(SpellSlot.R);
 
         public int rangeAllyCnt = 0;
         public int rangeEnemyCnt = 0;
@@ -59,6 +63,7 @@ namespace hAram
         {
             InitPlayer();
             Game.OnUpdate += Game_OnUpdate;
+            Obj_AI_Hero.OnProcessSpellCast += Obj_AI_Hero_OnProcessSpellCast;
             AntiGapcloser.OnEnemyGapcloser += AntiGapcloser_OnEnemyGapcloser;
         }
 
@@ -142,18 +147,6 @@ namespace hAram
             R = new Spell(SpellSlot.R, GetSpellRange(rData));
             R.Speed = rData.SData.MissileSpeed;
             R.Width = rData.SData.LineWidth;
-
-
-
-            //Kalista The Black Spear Use
-            if (Player.ChampionName.ToLowerInvariant().Equals("kalista"))
-            {
-                List<Obj_AI_Hero> lstAlies =
-                    ObjectHandler.Get<Obj_AI_Hero>()
-                    .Allies.OrderBy(r => r.AttackRange).ToList();
-
-                Player.Spellbook.CastSpell(SpellSlot.Item6, lstAlies[0]);
-            }
         }
         #endregion
 
@@ -173,6 +166,9 @@ namespace hAram
             else
                 RefreshLastShop();
         }
+
+        public virtual void Obj_AI_Hero_OnProcessSpellCast(Obj_AI_Base sender, GameObjectProcessSpellCastEventArgs args) { }
+
         public virtual void AntiGapcloser_OnEnemyGapcloser(ActiveGapcloser gapcloser) { }
 
 
@@ -497,7 +493,7 @@ namespace hAram
                     && slots[i].Id != null
                     && slots[i].Id != 0)
                 {
-                    for (int j = lastShopID + 1; j < Shoplist.Length; j++)
+                    for (int j = 0; j < Shoplist.Length; j++)
                     {
                         if (Items.HasItem(Shoplist[j])
                             && !lstHasItem.Contains(Shoplist[j]))
@@ -585,19 +581,19 @@ namespace hAram
             }
         }
 
-        public bool Killable()
+        public bool Killable(bool qFlag, bool wFlag, bool eFlag, bool rFlag)
         {
             var damage = 0d;
-            if (Q.IsReady())
+            if (Q.IsReady() && qFlag)
                 damage += Player.GetSpellDamage(target, SpellSlot.Q);
 
-            if (W.IsReady())
+            if (W.IsReady() && wFlag)
                 damage += Player.GetSpellDamage(target, SpellSlot.W);
 
-            if (E.IsReady())
+            if (E.IsReady() && eFlag)
                 damage += Player.GetSpellDamage(target, SpellSlot.E);
 
-            if (R.IsReady())
+            if (R.IsReady() && rFlag)
                 damage += Player.GetSpellDamage(target, SpellSlot.R);
 
             return target.Health <= damage;

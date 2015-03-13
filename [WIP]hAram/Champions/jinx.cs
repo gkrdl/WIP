@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 
 namespace hAram.Champions
 {
-    class alistar : Base
+    class jinx : Base
     {
-        public alistar()
+        public jinx()
         {
             Game.PrintChat("hAram : " + Player.ChampionName + "Loaded.");
         }
@@ -18,16 +18,13 @@ namespace hAram.Champions
         public override void Game_OnUpdate(EventArgs args)
         {
             base.Game_OnUpdate(args);
-
-            var lowHealthHero = getHero.LessHealthHero(E.Range);
-
-            if (lowHealthHero.HealthPercentage() <= 60)
-                CastSpell(E, eData);
-
+            
             CastSpell(W, wData);
-            CastSpell(Q, qData);
+            CastSpell(E, eData);
+            
 
-            if (status == "Fight" && Player.HealthPercentage() <= 50)
+            target = GetTarget(R);
+            if (R.IsKillable(target) || (status == "Fight" && Player.HealthPercentage() <= 30))
                 CastSpell(R, rData);
         }
     }

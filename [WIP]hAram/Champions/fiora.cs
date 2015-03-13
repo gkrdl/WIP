@@ -20,8 +20,8 @@ namespace hAram.Champions
             base.Game_OnUpdate(args);
 
             CastSpell(W, wData);
-            
-            if (Killable() || rangeAllyCnt + 1 >= rangeEnemyCnt)
+
+            if (Killable(true, true, true, true) || rangeAllyCnt + 1 >= rangeEnemyCnt)
                 CastSpell(Q, qData);
 
             CastSpell(E, eData);

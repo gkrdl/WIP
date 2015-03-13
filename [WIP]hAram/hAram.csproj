@@ -60,6 +60,22 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Base.cs" />
+    <Compile Include="Champions\elise.cs" />
+    <Compile Include="Champions\drmundo.cs" />
+    <Compile Include="Champions\gnar.cs" />
+    <Compile Include="Champions\khazix.cs" />
+    <Compile Include="Champions\kennen.cs" />
+    <Compile Include="Champions\kayle.cs" />
+    <Compile Include="Champions\katarina.cs" />
+    <Compile Include="Champions\kassadin.cs" />
+    <Compile Include="Champions\karma.cs" />
+    <Compile Include="Champions\kalista.cs" />
+    <Compile Include="Champions\jinx.cs" />
+    <Compile Include="Champions\jayce.cs" />
+    <Compile Include="Champions\jax.cs" />
+    <Compile Include="Champions\jarvaniv.cs" />
+    <Compile Include="Champions\janna.cs" />
+    <Compile Include="Champions\hecarim.cs" />
     <Compile Include="Champions\nunu.cs" />
     <Compile Include="Champions\nami.cs" />
     <Compile Include="Champions\morgana.cs" />
@@ -98,6 +114,7 @@
     <Compile Include="Champions\aatrox.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="AssemblyInfo.cs" />
+    <Compile Include="Utils\GetHero.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

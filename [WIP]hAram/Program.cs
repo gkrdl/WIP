@@ -31,7 +31,6 @@ namespace hAram
 
         private static void Game_OnGameLoad(EventArgs args)
         {
-            Game.PrintChat("Loaded hAram");
             InitMenu();
             var type = Type.GetType("Champions." + Player.ChampionName);
             Activator.CreateInstance(type);
