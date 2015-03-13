@@ -188,9 +188,9 @@ namespace hAram
                 {
                     if (!Player.UnderTurret(true))
                     {
-                        if (tsTarget != null)
-                            SetOrbWalk(tsTarget);
-                        else
+                        //if (tsTarget != null)
+                        //    SetOrbWalk(tsTarget);
+                        //else
                             SetOrbWalk(orbTarget);
                     }
                     status = "Fight";
