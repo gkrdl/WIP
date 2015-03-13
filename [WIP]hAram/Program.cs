@@ -33,7 +33,7 @@ namespace hAram
         {
             InitMenu();
             var type = Type.GetType("hAram.Champions." + Player.ChampionName);
-            Game.PrintChat(type);
+            Game.PrintChat(type.ToString());
             Activator.CreateInstance(type);
            
         }
