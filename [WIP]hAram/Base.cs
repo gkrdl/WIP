@@ -454,6 +454,7 @@ namespace hAram
 
         public void CastSpell(Spell spell, SpellDataInst sDataInst)
         {
+            Game.PrintChat(spell.Slot.ToString());
             if (spell.Slot == SpellSlot.E)
             {
                 Game.PrintChat(sDataInst.SData.IsToggleSpell.ToString());
@@ -461,6 +462,7 @@ namespace hAram
                 Game.PrintChat(sDataInst.SData.TargettingType.ToString());
 
             }
+
             target = GetTarget(spell);
             if (target != null && spell.IsReady())
             {
