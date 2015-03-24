@@ -12,8 +12,6 @@ namespace hAram
     internal class Program
     {
         #region ¸â¹ö, º¯¼ö
-        private static Menu config;
-        private static Orbwalking.Orbwalker orb;
         private static Spell Q;
         private static Spell W;
         private static Spell E;
@@ -31,19 +29,10 @@ namespace hAram
 
         private static void Game_OnGameLoad(EventArgs args)
         {
-            InitMenu();
             var type = Type.GetType("hAram.Champions." + Player.ChampionName.ToLowerInvariant());
             Game.PrintChat(type.ToString());
             Activator.CreateInstance(type);
            
-        }
-
-        private static void InitMenu()
-        {
-            config = new Menu("hAram", "hAram", true);
-            config.AddSubMenu(new Menu("Orbwalking", "Orbwalking"));
-            orb = new Orbwalking.Orbwalker(config);
-            config.AddToMainMenu();
         }
         #endregion
         

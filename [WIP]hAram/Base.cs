@@ -13,8 +13,8 @@ namespace hAram
     class Base
     {
         #region 멤버, 변수
-        public Menu config;
-        public Orbwalking.Orbwalker orb;
+        public static Menu config;
+        public static Orbwalking.Orbwalker orb;
         public Spell Q;
         public Spell W;
         public Spell E;
@@ -61,11 +61,20 @@ namespace hAram
         #region 초기화
         protected Base()
         {
+            InitMenu();
             InitPlayer();
             Game.OnUpdate += Game_OnUpdate;
             Obj_AI_Hero.OnProcessSpellCast += Obj_AI_Hero_OnProcessSpellCast;
             Obj_AI_Base.OnIssueOrder += Obj_AI_Base_OnIssueOrder;
             AntiGapcloser.OnEnemyGapcloser += AntiGapcloser_OnEnemyGapcloser;
+        }
+
+        private static void InitMenu()
+        {
+            config = new Menu("hAram", "hAram", true);
+            config.AddSubMenu(new Menu("Orbwalking", "Orbwalking"));
+            orb = new Orbwalking.Orbwalker(config);
+            config.AddToMainMenu();
         }
 
         public void InitPlayer()
@@ -457,8 +466,10 @@ namespace hAram
                 {
                     if (sDataInst.SData.IsToggleSpell)
                     {
-                        if (spell.Instance.ToggleState == 1 && sDataInst.SData.TargettingType == 6)
+                        if (spell.Instance.ToggleState == 1 && sDataInst.SData.TargettingType == SpellDataTargetType.Location)
                             spell.Cast(pred.CastPosition);
+                        else if (sDataInst.SData.TargettingType == SpellDataTargetType.Unit)
+                            spell.CastOnUnit(target);
                         else
                             spell.Cast();
                     }
@@ -468,7 +479,7 @@ namespace hAram
                         {
                             if (sDataInst.SData.TargettingType == 0)
                                 spell.Cast();
-                            else if (sDataInst.SData.TargettingType == 1)
+                            else if (sDataInst.SData.TargettingType == SpellDataTargetType.Unit)
                                 spell.CastOnUnit(target);
                             else
                                 spell.Cast(pred.CastPosition);
@@ -588,6 +599,9 @@ namespace hAram
 
         public bool Killable(bool qFlag, bool wFlag, bool eFlag, bool rFlag)
         {
+            if (target == null)
+                return false;
+
             var damage = 0d;
             if (Q.IsReady() && qFlag)
                 damage += Player.GetSpellDamage(target, SpellSlot.Q);
