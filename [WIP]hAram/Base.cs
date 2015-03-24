@@ -462,30 +462,30 @@ namespace hAram
                     return;
 
                 var pred = spell.GetPrediction(target);
-                if (pred.Hitchance >= HitChance.Medium)
+
+                if (sDataInst.SData.IsToggleSpell)
                 {
-                    if (sDataInst.SData.IsToggleSpell)
+                    if (spell.Instance.ToggleState == 1)
                     {
-                        if (spell.Instance.ToggleState == 1)
-                        {
-                            if (sDataInst.SData.TargettingType == SpellDataTargetType.Location)
-                                spell.Cast(pred.CastPosition);
-                            else if (sDataInst.SData.TargettingType == SpellDataTargetType.Unit)
-                                spell.CastOnUnit(target);
-                            else
-                                spell.Cast();
-                        }
+                        if (sDataInst.SData.TargettingType == SpellDataTargetType.Location)
+                            spell.Cast(pred.CastPosition);
+                        else if (sDataInst.SData.TargettingType == SpellDataTargetType.Unit)
+                            spell.CastOnUnit(target);
+                        else
+                            spell.Cast();
                     }
-                    else
+                }
+                else
+                {
+                    if (spell.IsReady())
                     {
-                        if (spell.IsReady())
+                        if (sDataInst.SData.TargettingType == SpellDataTargetType.Self)
+                            spell.Cast();
+                        else if (sDataInst.SData.TargettingType == SpellDataTargetType.Unit)
+                            spell.CastOnUnit(target);
+                        else if (pred.Hitchance >= HitChance.Medium)
                         {
-                            if (sDataInst.SData.TargettingType == 0)
-                                spell.Cast();
-                            else if (sDataInst.SData.TargettingType == SpellDataTargetType.Unit)
-                                spell.CastOnUnit(target);
-                            else
-                                spell.Cast(pred.CastPosition);
+                            spell.Cast(pred.CastPosition);
                         }
                     }
                 }
