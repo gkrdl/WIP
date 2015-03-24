@@ -466,12 +466,15 @@ namespace hAram
                 {
                     if (sDataInst.SData.IsToggleSpell)
                     {
-                        if (spell.Instance.ToggleState == 1 && sDataInst.SData.TargettingType == SpellDataTargetType.Location)
-                            spell.Cast(pred.CastPosition);
-                        else if (sDataInst.SData.TargettingType == SpellDataTargetType.Unit)
-                            spell.CastOnUnit(target);
-                        else
-                            spell.Cast();
+                        if (spell.Instance.ToggleState == 1)
+                        {
+                            if (sDataInst.SData.TargettingType == SpellDataTargetType.Location)
+                                spell.Cast(pred.CastPosition);
+                            else if (sDataInst.SData.TargettingType == SpellDataTargetType.Unit)
+                                spell.CastOnUnit(target);
+                            else
+                                spell.Cast();
+                        }
                     }
                     else
                     {
